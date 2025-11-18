@@ -1,0 +1,151 @@
+$menta: #2dd4bf;          
+$menta-oscuro: #14b8a6;   
+$menta-suave: #f0fdfa;    
+$gris-borde: #d1d5db;     
+$text-primario: #1f2937;
+$text-muted: #6b7280;
+
+
+ion-header {
+  --ion-background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(45, 212, 191, 0.08);
+
+  ion-toolbar {
+    --background: #ffffff;
+    --color: $menta-oscuro;
+
+    ion-title {
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    ion-back-button {
+      --color: $menta;
+    }
+  }
+}
+
+ion-card {
+  border-radius: 14px;
+  border: 1px solid $gris-borde;
+  box-shadow: 0 8px 24px rgba(45, 212, 191, 0.08);
+
+  ion-card-header {
+    background: #fff;
+    border-bottom: 1px solid $gris-borde;
+
+    ion-card-title {
+      color: $menta-oscuro;
+      font-weight: 700;
+    }
+
+    ion-card-subtitle {
+      color: $text-muted;
+      font-weight: 500;
+    }
+  }
+
+  ion-card-content {
+    padding-top: 12px;
+  }
+}
+
+ion-item {
+  --background: #fff;
+  --border-color: $gris-borde;
+  --border-width: 1px;
+  --border-style: solid;
+  --highlight-color-focused: $menta;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 4px 14px rgba(45, 212, 191, 0.06);
+  }
+
+  ion-label {
+    color: $text-muted;
+    font-weight: 500;
+  }
+
+  ion-input,
+  ion-textarea {
+    --padding-start: 12px;
+    --padding-end: 12px;
+    color: $text-primario;
+  }
+}
+
+ion-item.item-has-focus,
+ion-item.ion-focused {
+  --border-color: $menta;
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.12);
+}
+
+ion-card[color="light"] {
+  background: $menta-suave;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  box-shadow: none;
+
+  ion-card-content {
+    ion-text {
+      p {
+        margin: 6px 0;
+        color: $menta-oscuro;
+
+        ion-icon {
+          color: $menta;
+          margin-right: 6px;
+          vertical-align: -2px;
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}
+
+ion-button[color="success"] {
+  --background: $menta;
+  --background-hover: $menta-oscuro;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 20px rgba(45, 212, 191, 0.22);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+
+  &:hover {
+    filter: brightness(0.98);
+  }
+}
+
+ion-button[fill="clear"] {
+  --color: $menta-oscuro;
+  font-weight: 600;
+
+  &:hover {
+    background: $menta-suave;
+    border-radius: 10px;
+  }
+}
+
+ion-button ion-icon[slot="start"] {
+  font-size: 1.05em;
+  margin-inline-end: 6px;
+}
+
+ion-content {
+  --background: #f9fafb;
+}
+
+ion-card:hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 28px rgba(45, 212, 191, 0.12);
+}
+
+@media (min-width: 768px) {
+  ion-card {
+    margin: 12px auto;
+    max-width: 720px;
+  }
+}

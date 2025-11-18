@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrar Administrador</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Nuevo Administrador</ion-card-title>
+      <ion-card-subtitle>Completa los datos del nuevo administrador</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre Completo</ion-label>
+        <ion-input 
+          type="text" 
+          [(ngModel)]="displayName"
+          placeholder="Ej: Juan Pérez">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input 
+          type="email" 
+          [(ngModel)]="email"
+          placeholder="admin@ejemplo.com">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input 
+          type="password" 
+          [(ngModel)]="password"
+          placeholder="Mínimo 6 caracteres">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Confirmar Contraseña</ion-label>
+        <ion-input 
+          type="password" 
+          [(ngModel)]="confirmPassword"
+          placeholder="Repite la contraseña">
+        </ion-input>
+      </ion-item>
+
+      <ion-card class="ion-margin-top" color="warning">
+        <ion-card-content>
+          <ion-text>
+            <p><strong>Rol asignado:</strong> Administrador</p>
+            <p class="ion-text-wrap">
+              <ion-icon name="shield-checkmark-outline"></ion-icon>
+              El usuario tendrá permisos completos de administrador
+            </p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-button 
+        expand="block" 
+        (click)="registrar()"
+        color="primary"
+        class="ion-margin-top">
+        <ion-icon name="person-add-outline" slot="start"></ion-icon>
+        Registrar Administrador
+      </ion-button>
+
+      <ion-button 
+        expand="block" 
+        fill="clear"
+        (click)="limpiarFormulario()">
+        Limpiar Formulario
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

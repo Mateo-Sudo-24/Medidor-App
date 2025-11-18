@@ -1,0 +1,230 @@
+$zafiro: #0f52ba;         
+$zafiro-oscuro: #0c3f8c;  
+$zafiro-suave: #e8f0ff;   
+$azul-borde: #cdd9f0;     
+$text-primario: #1a1a1a;
+$text-muted: #6b7280;
+$success: #22c55e;
+$warning: #f59e0b;
+
+
+ion-header {
+  --ion-background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 82, 186, 0.08);
+
+  ion-toolbar {
+    --background: #ffffff;
+    --color: $zafiro-oscuro;
+
+    ion-title {
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    ion-back-button {
+      --color: $zafiro;
+    }
+  }
+}
+
+ion-card {
+  border-radius: 14px;
+  border: 1px solid $azul-borde;
+  box-shadow: 0 8px 24px rgba(15, 82, 186, 0.08);
+
+  ion-card-header {
+    background: linear-gradient(0deg, #fff, #fff);
+    border-bottom: 1px solid $azul-borde;
+
+    ion-card-title {
+      color: $zafiro-oscuro;
+      font-weight: 700;
+    }
+
+    ion-card-subtitle {
+      color: $text-muted;
+      font-weight: 500;
+    }
+  }
+
+  ion-card-content {
+    padding-top: 12px;
+  }
+}
+
+ion-item {
+  --background: #fff;
+  --border-color: $azul-borde;
+  --border-width: 1px;
+  --border-style: solid;
+  --highlight-color-focused: $zafiro; // línea activa del label
+  margin-bottom: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 4px 14px rgba(15, 82, 186, 0.06);
+  }
+
+  ion-label {
+    color: $text-muted;
+    font-weight: 500;
+  }
+
+  ion-input,
+  ion-textarea {
+    --padding-start: 12px;
+    --padding-end: 12px;
+    color: $text-primario;
+  }
+}
+
+
+ion-item.item-has-focus,
+ion-item.ion-focused {
+  --border-color: $zafiro;
+  box-shadow: 0 0 0 3px rgba(15, 82, 186, 0.12);
+}
+
+
+ion-card[color="warning"] {
+  background: #fffaf0;
+  border: 1px solid #fde68a;
+  box-shadow: none;
+
+  ion-card-content {
+    ion-text {
+      p {
+        margin: 6px 0;
+        color: #92400e;
+
+        ion-icon {
+          color: $warning;
+          margin-right: 6px;
+          vertical-align: -2px;
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}
+
+
+ion-button[color="primary"] {
+  --background: $zafiro;
+  --background-hover: $zafiro-oscuro;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 20px rgba(15, 82, 186, 0.22);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+
+  &:hover {
+    filter: brightness(0.98);
+  }
+}
+
+ion-button[color="success"] {
+  --background: $success;
+  --border-radius: 12px;
+}
+
+ion-button[fill="clear"] {
+  --color: $zafiro;
+  font-weight: 600;
+
+  &:hover {
+    background: $zafiro-suave;
+    border-radius: 10px;
+  }
+}
+
+ion-button ion-icon[slot="start"] {
+  font-size: 1.05em;
+  margin-inline-end: 6px;
+}
+
+
+ion-card:hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 28px rgba(15, 82, 186, 0.12);
+}
+
+ion-item.ng-invalid.ng-touched {
+  --border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+
+  ion-label {
+    color: #ef4444;
+  }
+}
+
+ion-content {
+  --background: #f7faff; // muy suave azulado
+}
+
+.ion-padding {
+  padding-top: 16px;
+}
+
+p.ion-text-wrap {
+  line-height: 1.35;
+}
+
+@media (min-width: 768px) {
+  ion-card {
+    margin: 12px auto;
+    max-width: 720px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-content {
+    --background: #0b1220;
+  }
+
+  ion-card {
+    background: #0f172a;
+    border-color: rgba(148, 163, 184, 0.24);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+
+    ion-card-header {
+      background: #111827;
+      border-bottom-color: rgba(148, 163, 184, 0.24);
+
+      ion-card-title {
+        color: #c7d2fe;
+      }
+
+      ion-card-subtitle {
+        color: #94a3b8;
+      }
+    }
+  }
+
+  ion-item {
+    --background: #0f172a;
+    --border-color: rgba(148, 163, 184, 0.24);
+
+    ion-label {
+      color: #cbd5e1;
+    }
+
+    ion-input,
+    ion-textarea {
+      color: #e5e7eb;
+    }
+  }
+
+  ion-button[color="primary"] {
+    --background: lighten($zafiro, 2%);
+  }
+
+  ion-button[fill="clear"] {
+    --color: #93c5fd;
+
+    &:hover {
+      background: rgba(147, 197, 253, 0.08);
+    }
+  }
+}

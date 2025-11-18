@@ -1,0 +1,160 @@
+/* ===========
+   Paleta Agua Clara
+   =========== */
+$agua: #7dd3fc;           // Azul agua principal
+$agua-oscuro: #0ea5e9;    // Hover / focus
+$agua-suave: #f0f9ff;     // Fondo suave
+$gris-borde: #d1d5db;     // Bordes sutiles
+$text-primario: #1f2937;
+$text-muted: #6b7280;
+
+/* ===========
+   Fondo general
+   =========== */
+ion-content {
+  --background: $agua-suave;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  max-width: 420px;
+  margin: auto;
+}
+
+/* ===========
+   Tarjeta principal
+   =========== */
+ion-card {
+  border-radius: 16px;
+  border: 1px solid $gris-borde;
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.12);
+  background: #fff;
+
+  ion-card-header {
+    text-align: center;
+    padding-bottom: 8px;
+
+    ion-card-title {
+      color: $agua-oscuro;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+  }
+}
+
+/* ===========
+   Inputs flotantes
+   =========== */
+ion-item {
+  --background: #fff;
+  --border-color: $gris-borde;
+  --border-width: 1px;
+  --border-style: solid;
+  --highlight-color-focused: $agua;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+
+  ion-label {
+    color: $text-muted;
+    font-weight: 500;
+  }
+
+  ion-input {
+    --padding-start: 12px;
+    color: $text-primario;
+  }
+}
+
+/* Glow al enfocar */
+ion-item.item-has-focus,
+ion-item.ion-focused {
+  --border-color: $agua;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.12);
+}
+
+/* ===========
+   Botones elegantes
+   =========== */
+ion-button {
+  --border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Botón principal */
+ion-button:not([fill="clear"]):not([fill="outline"]) {
+  --background: $agua;
+  --background-hover: $agua-oscuro;
+  --box-shadow: 0 6px 18px rgba(14, 165, 233, 0.25);
+
+  &:hover {
+    filter: brightness(0.98);
+    transform: translateY(-1px);
+  }
+}
+
+/* Botón outline */
+ion-button[fill="outline"] {
+  --border-color: $agua;
+  --color: $agua-oscuro;
+
+  &:hover {
+    background: $agua-suave;
+  }
+}
+
+/* Botón clear */
+ion-button[fill="clear"] {
+  --color: $agua-oscuro;
+
+  &:hover {
+    background: rgba(125, 211, 252, 0.15);
+    border-radius: 10px;
+  }
+}
+
+/* Iconos en botones */
+ion-button ion-icon[slot="start"] {
+  font-size: 1.1em;
+  margin-inline-end: 6px;
+}
+
+/* ===========
+   Texto informativo
+   =========== */
+ion-text {
+  font-size: 0.9rem;
+  color: $text-muted;
+  margin: 12px 0;
+}
+
+/* ===========
+   Animación suave al cargar
+   =========== */
+.login-container {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========
+   Responsive
+   =========== */
+@media (min-width: 768px) {
+  .login-container {
+    max-width: 480px;
+  }
+}

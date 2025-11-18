@@ -1,0 +1,96 @@
+// Variables para colores y tamaños
+$color-muted: #666;
+$color-border: #ddd;
+$color-primary: #3880ff;
+$color-danger: #eb445a;
+$font-small: 0.85em;
+
+// Sección de información
+.info-section {
+  margin-bottom: 12px;
+
+  p {
+    margin: 4px 0;
+  }
+
+  .text-muted {
+    color: $color-muted;
+    font-size: 0.9em;
+  }
+}
+
+// Grid de fotos
+.fotos-grid {
+  margin-top: 12px;
+  padding: 0;
+
+  .foto-container {
+    text-align: center;
+
+    .foto-label {
+      font-size: $font-small;
+      font-weight: bold;
+      margin-bottom: 4px;
+      color: #333;
+    }
+
+    img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid $color-border;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}
+
+// Estilo para acordeones
+ion-accordion {
+  margin-bottom: 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+// Header del acordeón
+ion-item[slot="header"] {
+  ion-label {
+    h2 {
+      font-size: 1.1em;
+      margin-bottom: 4px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: $font-small;
+      color: $color-muted;
+      margin: 2px 0;
+
+      ion-icon {
+        font-size: 0.9em;
+        vertical-align: middle;
+        margin-right: 4px;
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+// Botones personalizados
+ion-button[color="danger"] {
+  background-color: $color-danger;
+}
+
+ion-button[color="primary"] {
+  background-color: $color-primary;
+}

@@ -1,0 +1,184 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Panel Medidor</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <!-- Bienvenida -->
+  <ion-card>
+    <ion-card-content>
+      <h2>¡Hola, {{userName}}!</h2>
+      <p>Total de mediciones realizadas: <strong>{{totalMediciones}}</strong></p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botones para cambiar de vista -->
+  <ion-segment [(ngModel)]="mostrarFormulario" (ionChange)="toggleVista()">
+    <ion-segment-button [value]="true">
+      <ion-label>Mis Mediciones</ion-label>
+    </ion-segment-button>
+    <ion-segment-button [value]="false">
+      <ion-label>Nueva Medición</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Formulario de Nueva Medición -->
+  <div *ngIf="mostrarFormulario">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Nueva Medición</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        
+        <!-- Valor del Medidor -->
+        <ion-item>
+          <ion-label position="floating">Valor del Medidor</ion-label>
+          <ion-input 
+            type="text" 
+            [(ngModel)]="valorMedidor"
+            placeholder="Ej: 12345">
+          </ion-input>
+        </ion-item>
+
+        <!-- Observaciones -->
+        <ion-item>
+          <ion-label position="floating">Observaciones</ion-label>
+          <ion-textarea 
+            [(ngModel)]="observaciones"
+            rows="3"
+            placeholder="Detalles adicionales...">
+          </ion-textarea>
+        </ion-item>
+
+        <!-- Foto del Medidor -->
+        <ion-button 
+          expand="block" 
+          (click)="tomarFotoMedidor()"
+          class="ion-margin-top">
+          <ion-icon name="camera-outline" slot="start"></ion-icon>
+          Tomar Foto del Medidor
+        </ion-button>
+        
+        <img *ngIf="fotoMedidor" [src]="fotoMedidor" style="width: 100%; margin-top: 10px; border-radius: 8px;">
+
+        <!-- Foto de la Fachada -->
+        <ion-button 
+          expand="block" 
+          (click)="tomarFotoFachada()">
+          <ion-icon name="home-outline" slot="start"></ion-icon>
+          Tomar Foto de la Fachada
+        </ion-button>
+        
+        <img *ngIf="fotoFachada" [src]="fotoFachada" style="width: 100%; margin-top: 10px; border-radius: 8px;">
+
+        <!-- Obtener Ubicación -->
+        <ion-button 
+          expand="block" 
+          (click)="obtenerUbicacion()"
+          color="secondary">
+          <ion-icon name="location-outline" slot="start"></ion-icon>
+          Obtener Ubicación GPS
+        </ion-button>
+
+        <ion-item *ngIf="latitud && longitud">
+          <ion-label>
+            <p><strong>Ubicación:</strong></p>
+            <p>Lat: {{latitud.toFixed(6)}}</p>
+            <p>Lng: {{longitud.toFixed(6)}}</p>
+          </ion-label>
+        </ion-item>
+
+        <!-- Guardar Medición -->
+        <ion-button 
+          expand="block" 
+          (click)="guardarMedicion()"
+          color="success"
+          class="ion-margin-top">
+          <ion-icon name="save-outline" slot="start"></ion-icon>
+          Guardar Medición
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+<!-- Lista de Mediciones -->
+<div *ngIf="!mostrarFormulario">
+  
+  <ion-card *ngIf="mediciones.length === 0">
+    <ion-card-content>
+      <p class="ion-text-center">No tienes mediciones registradas aún</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-accordion-group>
+    <ion-accordion *ngFor="let medicion of mediciones; let i = index" [value]="'medicion-' + i">
+      
+      <ion-item slot="header" color="light">
+        <ion-label>
+          <h2><strong>Valor: {{medicion.valorMedidor}}</strong></h2>
+          <p>{{formatearFecha(medicion.fechaRegistro)}}</p>
+        </ion-label>
+      </ion-item>
+
+      <div class="ion-padding" slot="content">
+        
+        <!-- Observaciones -->
+        <div *ngIf="medicion.observaciones" class="info-section">
+          <p><strong>Observaciones:</strong></p>
+          <p class="text-muted">{{medicion.observaciones}}</p>
+        </div>
+
+        <!-- Ubicación -->
+        <div class="info-section">
+          <p><strong>Ubicación:</strong></p>
+          <p class="text-muted">
+            Lat: {{medicion.latitud.toFixed(6)}}<br>
+            Lng: {{medicion.longitud.toFixed(6)}}
+          </p>
+        </div>
+
+        <!-- Botón Google Maps -->
+        <ion-button 
+          size="small"
+          expand="block" 
+          fill="outline"
+          color="primary"
+          (click)="abrirGoogleMaps(medicion.googleMapsUrl)">
+          <ion-icon name="map-outline" slot="start"></ion-icon>
+          Ver en Google Maps
+        </ion-button>
+
+        <!-- Grid de Fotos -->
+        <ion-grid class="fotos-grid">
+          <ion-row>
+            <ion-col size="6">
+              <div class="foto-container">
+                <p class="foto-label">Foto del Medidor</p>
+                <img [src]="medicion.fotoMedidor" (click)="verImagenCompleta(medicion.fotoMedidor)">
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="foto-container">
+                <p class="foto-label">Foto de la Fachada</p>
+                <img [src]="medicion.fotoFachada" (click)="verImagenCompleta(medicion.fotoFachada)">
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+</div>
+
+</ion-content>
